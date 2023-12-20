@@ -21,8 +21,7 @@ def prepare_image(
     arr = np.array(pil_image.convert("RGB"))
     arr = arr.astype(np.float32) / 127.5 - 1
     arr = np.transpose(arr, [2, 0, 1])
-    image = torch.from_numpy(arr).unsqueeze(0)
-    return image
+    return torch.from_numpy(arr).unsqueeze(0)
 
 
 def prepare_mask(
@@ -32,8 +31,7 @@ def prepare_mask(
     arr = np.array(pil_image.convert("L"))
     arr = arr.astype(np.float32) / 255.0
     arr = np.expand_dims(arr, 0)
-    image = torch.from_numpy(arr).unsqueeze(0)
-    return image
+    return torch.from_numpy(arr).unsqueeze(0)
 
 
 class PreprocessedDataset(Dataset):
@@ -295,8 +293,7 @@ class TokenEmbeddingsHandler:
         self.embeddings_settings = {}
 
     def initialize_new_tokens(self, inserting_toks: List[str]):
-        idx = 0
-        for tokenizer, text_encoder in zip(self.tokenizers, self.text_encoders):
+        for idx, (tokenizer, text_encoder) in enumerate(zip(self.tokenizers, self.text_encoders)):
             assert isinstance(
                 inserting_toks, list
             ), "inserting_toks should be a list of strings."
@@ -340,8 +337,6 @@ class TokenEmbeddingsHandler:
             self.embeddings_settings[f"index_no_updates_{idx}"] = inu
 
             print(self.embeddings_settings[f"index_no_updates_{idx}"].shape)
-
-            idx += 1
 
     def save_embeddings(self, file_path: str):
         assert (
