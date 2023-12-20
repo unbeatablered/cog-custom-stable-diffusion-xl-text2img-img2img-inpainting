@@ -30,8 +30,8 @@ MODEL_CACHE = "./sdxl-cache"
 FEATURE_EXTRACTOR = "./feature-extractor"
 
 class KarrasDPM:
-    def from_config(config):
-        return DPMSolverMultistepScheduler.from_config(config, use_karras_sigmas=True)
+    def from_config(self):
+        return DPMSolverMultistepScheduler.from_config(self, use_karras_sigmas=True)
 
 SCHEDULERS = {
     "DDIM": DDIMScheduler,
