@@ -8,12 +8,11 @@ build:
     - "libxext6"
   python_packages:
     - "omegaconf==2.3.0"
-    - "torch==2.0.1"
-    - "torchvision"
     - "diffusers==0.23.0"
     - "transformers==4.35.0"
     - "accelerate==0.21.0"
     - "pandas==2.0.3"
+    - "safetensors==0.4.1"
 
   run:
     - curl -o /usr/local/bin/pget -L "https://github.com/replicate/pget/releases/download/v0.0.3/pget" && chmod +x /usr/local/bin/pget
